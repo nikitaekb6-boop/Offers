@@ -23,7 +23,7 @@ from aiogram.utils.keyboard import InlineKeyboardBuilder
 # ============================================================
 # ВСТАВЬ СЮДА НОВЫЙ ТОКЕН ОТ @BotFather (после /revoke старого)
 # ============================================================
-BOT_TOKEN = "ВСТАВЬ_СЮДА_НОВЫЙ_ТОКЕН"
+BOT_TOKEN = "9002614932:AAFIf4N2GB1yG-HD3P7B4ZZgfpfmyM4KWqU"
 
 # Твой Telegram ID. Можно добавить несколько ID через запятую:
 # ADMIN_IDS = {111111111, 222222222}
