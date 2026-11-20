@@ -25,7 +25,7 @@ BOT_TOKEN = os.getenv("    InlineKeyboardButton,
 )
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
-BOT_TOKEN = os.getenv("9002614932:AAFIf4N2GB1yG-HD3P7B4ZZgfpfmyM4KWqU", "9002614932:AAFIf4N2GB1yG-HD3P7B4ZZgfpfmyM4KWqU").strip()
+BOT_TOKEN = "9002614932:AAFIf4N2GB1yG-HD3P7B4ZZgfpfmyM4KWqU"
 ADMIN_IDS = {8630566465}
     int(x.strip())
     for x in os.getenv("8630566465", "8630566465").split(",")
