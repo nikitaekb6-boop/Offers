@@ -10,65 +10,65 @@ from urllib.parse import urlparse, quote
 import aiohttp
 
 from aiogram import Bot, Dispatcher, F
-from aiogram.filters import Command, CommandStart
-from aiogram.types import (
-    Message,
-    InlineQuery,
+from aiogram.filters import Command, CommandStarter
+from aiogram.types import  (
+    Сообщение,
+    Встроенный запрос,
     InlineQueryResultPhoto,
     InlineQueryResultArticle,
     InputTextMessageContent,
     LinkPreviewOptions,
     InlineKeyboardMarkup,
-    InlineKeyboardButton,
+    Встроенная кнопка клавиатуры,
     CallbackQuery,
 )
-from aiogram.utils.keyboard import InlineKeyboardBuilder
+from aiogram.utils.keyboard import InlineKeyboardBuilderimport InlineKeyboardBuilder
 
 
-# ============================================================
-# НАСТРОЙКИ
-# ============================================================
+# ===========================================================
+# НАСТРОКИ
+# ===========================================================
 
-# Вставь сюда новый токен от @BotFather.
-# Не отправляй токен в чат и не размещай его в публичном GitHub.
-BOT_TOKEN = "ВСТАВЬ_СЮДА_НОВЫЙ_ТОКЕН"
+#Вставь сюда новый токен от @BotFather.
+# Не отправляйте токен в чат и не размещайте его публично на GitHub.
+BOT_TOKEN = "9002614932:AAFIf4N2GB1yG-HD3P7B4ZZgfpfmyM4KWqU""9002614932:AAFIf4N2GB1yG-HD3P7B4ZZgfpfmyM4KWqU"
 
 # Telegram ID администратора. Можно добавить несколько ID.
-ADMIN_IDS = {8630566465}
+Идентификаторы администраторов = {8630566465}{8630566465}
 
-BOT_USERNAME = "OficialOfferTelegram_bot"
-DB_PATH = "offers.sqlite3"
-OFFER_LIFETIME_HOURS = 6
+BOT_USERNAME = "Официальное предложениеTelegram_bot""OficialOfferTelegram_bot"
+DB_PATH = "offers.sqlite3""offers.sqlite3"
+OFFER_LIFETIME_HOURS = 66
 
-# Ссылка передачи формируется для каждого оффера по username его создателя.
+# Ссылка передачи формы для каждого предложения по имени пользователя его создателя.
 
-if not BOT_TOKEN or BOT_TOKEN == "ВСТАВЬ_СЮДА_НОВЫЙ_ТОКЕН":
-    raise RuntimeError("Вставь новый BOT_TOKEN в начало файла main.py")
+если не BOT_TOKEN или BOT_TOKEN == "ВСТАВЬ_СЮДА_НОВЫЙ_ТОКЕН": not BOT_TOKEN or BOT_TOKEN == "ВСТАВЬ_СЮДА_НОВЫЙ_ТОКЕН":
+    поднять RuntimeError("Вставить новый BOT_TOKEN в начало файла main.py")raise RuntimeError("Вставь новый BOT_TOKEN в начало файла main.py")
 
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s | %(levelname)s | %(message)s",
+logging.basicConfig(basicConfig(
+    level=logging.INFO,INFO,
+    format="%(asctime)s | %(levelname)s | %(message)s","%(asctime)s | %(levelname)s | %(message)s",
 )
 
-bot = Bot(token=BOT_TOKEN)
-dp = Dispatcher()
+бот = Bot(token=BOT_TOKEN)Bot(token=BOT_TOKEN)
+dp = Dispatcher()Dispatcher()
 
-db = sqlite3.connect(DB_PATH)
-db.row_factory = sqlite3.Row
-db.execute("PRAGMA journal_mode=WAL")
+db = sqlite3.connect(DB_PATH)connect(DB_PATH)
+db.row_factory = sqlite3.Rowrow_factory = sqlite3.Row
+db.execute("PRAGMA journal_mode=WAL")execute("PRAGMA journal_mode=WAL")
 
 
-# ============================================================
-# БАЗА ДАННЫХ
-# ============================================================
+# ===========================================================
+# БАЗА ДАННЫЕ
+# ===========================================================
 
-db.execute("""
+db.execute("""""")("""
 CREATE TABLE IF NOT EXISTS allowed_users (
     user_id INTEGER PRIMARY KEY
 )
 """)
 
-db.execute("""
+db.execute("""""")("""
 CREATE TABLE IF NOT EXISTS offers (
     offer_id TEXT PRIMARY KEY,
     seller_id INTEGER NOT NULL,
@@ -83,25 +83,25 @@ CREATE TABLE IF NOT EXISTS offers (
     language TEXT NOT NULL DEFAULT 'ru'
 )
 """)
-# Миграция для уже существующей базы: старые офферы останутся на русском.
-columns = {row[1] for row in db.execute("PRAGMA table_info(offers)").fetchall()}
-if "language" not in columns:
-    db.execute("ALTER TABLE offers ADD COLUMN language TEXT NOT NULL DEFAULT 'ru'")
-db.commit()
+# Миграция для уже относительных баз: старые офферы остаются на английском языке.
+columns = {row[1] for row in db.execute("PRAGMA table_info(offers)").fetchall()}{row[1] for row in db.execute("PRAGMA table_info(offers)").fetchall()}
+если "язык" не расположен в столбцах: "language" not in columns:
+    db.execute("ALTER TABLE offers ADD COLUMN language TEXT NOT NULL DEFAULT 'ru'")execute("ALTER TABLE offers ADD COLUMN language TEXT NOT NULL DEFAULT 'ru'")
+db.commit()commit()
 
 
-def is_allowed(user_id: int) -> bool:
-    if user_id in ADMIN_IDS:
-        return True
-    return db.execute(
-        "SELECT 1 FROM allowed_users WHERE user_id = ?",
-        (user_id,),
-    ).fetchone() is not None
+def is_allowed(user_id: int) -> bool: is_allowed(user_id: int) -> bool:
+    если user_id находится в ADMIN_IDS:if user_id in ADMIN_IDS:
+        вернуть Truereturn True
+    return db.execute(return db.execute(
+        "SELECT 1 FROM allowed_users WHERE user_id = ?","SELECT 1 FROM allowed_users WHERE user_id = ?",
+        (ID пользователя,),(user_id,),
+    ).fetchone() is not None).fetchone() is not None
 
 
-def parse_nft_link(value: str):
-    """Принимает t.me/nft/slug, https://t.me/nft/slug и ссылку в Markdown."""
-    value = (value or "").strip()
+def parse_nft_link(value: str): parse_nft_link(value: str):
+    """Принимает t.me/nft/slug, https://t.me/nft/slug и ссылку в Markdown.""""""Принимает t.me/nft/slug, https://t.me/nft/slug и ссылку в Markdown."""
+    значение = (значение или "").strip()(value or "").strip()
 
     # Если ссылка вставлена как [текст](URL), берём именно URL из скобок.
     markdown_match = re.fullmatch(r"\[[^\]]+\]\((https?://[^\s)]+)\)", value)
