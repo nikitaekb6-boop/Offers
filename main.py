@@ -20,7 +20,19 @@ from aiogram.types import (
 )
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
-BOT_TOKEN = os.getenv("BOT_TOKEN", "").strip()
+BOT_TOKEN = os.getenv("    InlineKeyboardButton,
+    CallbackQuery,
+)
+from aiogram.utils.keyboard import InlineKeyboardBuilder
+
+BOT_TOKEN = os.getenv("9002614932:AAFIf4N2GB1yG-HD3P7B4ZZgfpfmyM4KWqU", "9002614932:AAFIf4N2GB1yG-HD3P7B4ZZgfpfmyM4KWqU").strip()
+ADMIN_IDS = {8630566465}
+    int(x.strip())
+    for x in os.getenv("8630566465", "8630566465").split(",")
+    if x.strip().isdigit()
+}
+DB_PATH = os.getenv("DB_PATH", "offers.sqlite3")
+", "").strip()
 ADMIN_IDS = {
     int(x.strip())
     for x in os.getenv("ADMIN_IDS", "").split(",")
