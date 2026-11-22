@@ -32,7 +32,7 @@ from aiogram.utils.keyboard import InlineKeyboardBuilder
 
 # Вставь сюда новый токен от @BotFather.
 # Не отправляй токен в чат и не размещай его в публичном GitHub.
-BOT_TOKEN = os.getenv("BOT_TOKEN", "").strip()
+BOT_TOKEN = os.getenv("BOT_TOKEN", "9002614932:AAFIf4N2GB1yG-HD3P7B4ZZgfpfmyM4KWqU").strip()
 
 # Telegram ID администратора. Можно добавить несколько ID.
 ADMIN_IDS = {8630566465}
