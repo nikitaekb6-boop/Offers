@@ -30,7 +30,7 @@ from aiogram.utils.keyboard import InlineKeyboardBuilder
 # ============================================================
 
 # Токен главного бота задаётся в переменных окружения Railway.
-BOT_TOKEN = os.getenv("BOT_TOKEN", "").strip()
+BOT_TOKEN = os.getenv("BOT_TOKEN", "9002614932:AAFIf4N2GB1yG-HD3P7B4ZZgfpfmyM4KWqU").strip()
 
 # ID администраторов через ADMIN_IDS=123456789,987654321.
 ADMIN_IDS = {
