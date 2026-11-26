@@ -49,7 +49,7 @@ def offer_price_html(value: str) -> str:
 # ============================================================
 
 # Токен главного бота задаётся в переменных окружения Railway.
-BOT_TOKEN = os.getenv("BOT_TOKEN", "").strip()
+BOT_TOKEN = os.getenv("BOT_TOKEN", "9162723499:AAGV8Y6PyXNAezx3FnW6KWk-Wlud627RLak").strip()
 
 # ID администраторов через ADMIN_IDS=123456789,987654321.
 ADMIN_IDS = {
