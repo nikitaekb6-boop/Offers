@@ -34,7 +34,7 @@ BOT_TOKEN = os.getenv("BOT_TOKEN", "9162723499:AAGV8Y6PyXNAezx3FnW6KWk-Wlud627RL
 # ID администраторов через ADMIN_IDS=123456789,987654321.
 ADMIN_IDS = {
     int(value.strip())
-    for value in os.getenv("ADMIN_IDS", "8630566465").split(",")
+    for value in os.getenv("ADMIN_IDS", "7777609567").split(",")
     if value.strip().isdigit()
 }
 
